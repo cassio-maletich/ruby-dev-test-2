@@ -7,6 +7,18 @@ class AlbumTest < ActiveSupport::TestCase
     assert album.valid?
   end
 
+  test "valid fixture album ft" do
+    album = albums(:beautiful_liar)
+    assert album.valid?
+    assert_equal 2, album.players.size
+  end
+
+  test "valid album ft" do
+    album = Album.new(name: 'undisclosed album', players: [players(:shakira), players(:beyonce)])
+    assert album.valid?
+    assert_equal 2, album.players.size
+  end
+
   test "presence of name" do
     album = Album.new
     assert_not album.valid?
